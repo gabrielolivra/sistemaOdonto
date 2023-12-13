@@ -126,10 +126,11 @@ $conn->close();
     <div class="sidebar">
         <img src="../../assets/img/logo-sidebar.png" alt="">
         <ul>
-            <li><a href="../../views/admin/home.php">Página Inicial</a></li>
+        <li><a href="../../views/admin/home.php">Página Inicial</a></li>
             <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
-            <li><a href="../../views/admin/clientes.php">Clientes</a></li>
-            <li><a href="../../views/admin/historicoAgendamentos.php">Historico de Agendamentos</a></li>
+            <li><a href="../../views/admin/clientes.php">Agendar</a></li>
+            <li><a href="../../views/admin/galeria.php">Galeria de clientes</a></li>
+            <li><a href="../../views/admin/historicoAgendamentos.php">Histórico de Agendamentos</a></li>
             <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>

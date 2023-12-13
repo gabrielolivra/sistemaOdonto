@@ -78,7 +78,7 @@ $conn->close();
     <div class="sidebar">
         <img src="../../assets/img/logo-sidebar.png" alt="">
         <ul>
-        <li><a href="../../views/admin/home.php">Página Inicial</a></li>
+            <li><a href="../../views/admin/home.php">Página Inicial</a></li>
             <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
             <li><a href="../../views/admin/clientes.php">Agendar</a></li>
             <li><a href="../../views/admin/galeria.php">Galeria de clientes</a></li>
@@ -97,7 +97,7 @@ $conn->close();
         // Exibindo os resultados em uma tabela
         if (!empty($resultadosClientes)) {
             echo "<table>";
-            echo "<tr><th>Cliente</th><th>CPF</th><th>Telefone</th><th>Cidade</th><th>Endereço</th><th>Agendar</th></tr>";
+            echo "<tr><th>Cliente</th><th>CPF</th><th>Telefone</th><th>Cidade</th><th>Endereço</th><th>Arquivos</th></tr>";
 
             foreach ($resultadosClientes as $cliente) {
                 echo "<tr>";
@@ -106,7 +106,7 @@ $conn->close();
                 echo "<td>" . $cliente["telefone"] . "</td>";
                 echo "<td>" . $cliente["endereco_cidade"] . "</td>";
                 echo "<td>" . $cliente["endereco_rua"] . "</td>";
-                echo "<td><button class='agendar' data-id='" . $cliente["id"] . "'>Agendar</button></td>";
+                echo "<td><button class='agendar' data-id='" . $cliente["id"] . "'>Abrir galeria</button></td>";
                 echo "</tr>";
             }
 
@@ -134,7 +134,7 @@ $conn->close();
         $(".agendar").on("click", function () {
             // Obtém o ID do cliente associado ao botão clicado
             var clienteId = $(this).data("id");
-            window.location.href = "agendamentos.php?id=" + clienteId;
+            window.location.href = "arquivoGaleria.php?id=" + clienteId;
         });
     });
 </script>
