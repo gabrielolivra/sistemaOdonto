@@ -1,3 +1,16 @@
+<?php
+session_start();
+require '../../assets/php/conexao.php';
+require '../../assets/php/verificaAdmin.php';
+$conn = conectarAoBanco();
+
+// Verifique se o usuário é um administrador
+if (!isAdmin()) {
+    // Se não for um administrador, redirecione para outra página ou exiba uma mensagem de erro
+    header("Location: ../../views/autenticado/home.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,31 +34,32 @@
             <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
             <li><a href="../../views/admin/clientes.php">Clientes</a></li>
             <li><a href="../../views/admin/historicoAgendamentos.php">Historico de Agendamentos</a></li>
+            <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>
 
     <div class="content">
         <h2>Cadastro de clientes</h2>
         <form action="../../assets/php/valida_cadastro_cliente.php" method="POST">
-        <label for="nome">Nome Completo:</label>
+        <label for="nome">Nome Completo</label>
         <input type="text" id="nome" name="nome" required>
 
-        <label for="telefone">CPF:</label>
+        <label for="telefone">CPF</label>
         <input type="text" id="cpf" name="cpf" required>
 
-        <label for="telefone">Telefone:</label>
+        <label for="telefone">Telefone</label>
         <input type="text" id="telefone" name="telefone" required>
 
-        <label for="cep">CEP:</label>
+        <label for="cep">CEP</label>
         <input type="text" id="cep" name="cep" required onblur="buscarCEP()">
 
-        <label for="cidade">Cidade:</label>
+        <label for="cidade">Cidade</label>
         <input type="text" id="cidade" name="cidade" required>
 
-        <label for="estado">Estado:</label>
+        <label for="estado">Estado</label>
         <input type="text" id="estado" name="estado" required>
  
-        <label for="endereco">Endereço:</label>
+        <label for="endereco">Endereço</label>
         <input type="text" id="endereco" name="endereco" required>
 
         <button type="submit">Cadastrar</button>

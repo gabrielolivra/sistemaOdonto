@@ -31,6 +31,7 @@ if (!isAdmin()) {
             <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
             <li><a href="../../views/admin/clientes.php">Clientes</a></li>
             <li><a href="../../views/admin/historicoAgendamentos.php">Historico de Agendamentos</a></li>
+            <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>
 

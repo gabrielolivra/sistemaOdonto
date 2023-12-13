@@ -35,22 +35,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else{
     // Verificar se a chave 'finalizar' está definida no array $_POST
-    if (isset($_POST["finalizar"])) {
-        $acaoFinalizar = $_POST["finalizar"];
-
-        // Atualizar o campo 'finalizar' do agendamento
-        $sqlAtualizarStatusFinalizar = "UPDATE agendamentos SET finalizar = '$acaoFinalizar' WHERE id = $idAgendamento";
-        $conn->query($sqlAtualizarStatusFinalizar);
-    }}
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $idAgendamento = $_POST["id_agendamento"];
+    
+        // Verificar se a chave 'acao' está definida no array $_POST
+        $acao = isset($_POST["acao"]) ? $_POST["acao"] : null;
+    
+        // Atualizar o status do agendamento, se 'acao' não for nulo
+        if ($acao !== null) {
+            $sqlAtualizarStatus = "UPDATE agendamentos SET status = '$acao' WHERE id = $idAgendamento";
+            $conn->query($sqlAtualizarStatus);
+        } else {
+            // Verificar se a chave 'finalizar' está definida no array $_POST
+            if (isset($_POST["finalizar"])) {
+                $acaoFinalizar = $_POST["finalizar"];
+    
+                // Verificar se o campo 'status' é nulo antes de atualizar 'finalizar'
+                $sqlVerificarStatusNulo = "SELECT status FROM agendamentos WHERE id = $idAgendamento";
+                $resultStatus = $conn->query($sqlVerificarStatusNulo);
+    
+                if ($resultStatus !== false && $resultStatus->num_rows > 0) {
+                    $rowStatus = $resultStatus->fetch_assoc();
+                    $statusAtual = $rowStatus["status"];
+    
+                    // Atualizar o campo 'finalizar' somente se o campo 'status' não for nulo
+                    if ($statusAtual !== null) {
+                        $sqlAtualizarStatusFinalizar = "UPDATE agendamentos SET finalizar = '$acaoFinalizar' WHERE id = $idAgendamento";
+                        $conn->query($sqlAtualizarStatusFinalizar);
+                    }
+                }
+            }
+        }
+    }
+    }
 }
 
 // Configurar as variáveis de filtro de datas
 $dataInicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : '';
 $dataFim = isset($_GET['data_fim']) ? $_GET['data_fim'] : '';
 
+// Obter a data atual
+$dataAtual = date('Y-m-d');
+
 // Construir a parte da condição da consulta SQL para o filtro de datas
 $condicaoData = '';
-if (!empty($dataInicio) && !empty($dataFim)) {
+if (empty($dataInicio) && empty($dataFim)) {
+    // Se não houver data de início nem data de fim especificadas, listar agendamentos do dia corrente
+    $condicaoData = " AND DATE(ag.data_agendamento) = '$dataAtual'";
+} elseif (!empty($dataInicio) && !empty($dataFim)) {
     $condicaoData = " AND ag.data_agendamento BETWEEN '$dataInicio' AND '$dataFim'";
 } elseif (!empty($dataInicio)) {
     $condicaoData = " AND ag.data_agendamento >= '$dataInicio'";
@@ -59,12 +91,12 @@ if (!empty($dataInicio) && !empty($dataFim)) {
 }
 
 // Query SQL para contar o número total de agendamentos com o filtro de datas
-$sqlTotalAgendamentos = "SELECT COUNT(*) AS total FROM agendamentos ag INNER JOIN clientes cli ON cli.id = ag.cliente_id WHERE 1 $condicaoData  and finalizar is null";
+$sqlTotalAgendamentos = "SELECT COUNT(*) AS total FROM agendamentos ag INNER JOIN clientes cli ON cli.id = ag.cliente_id WHERE 1 $condicaoData and finalizar is null";
 $resultTotalAgendamentos = $conn->query($sqlTotalAgendamentos);
 $totalAgendamentos = $resultTotalAgendamentos->fetch_assoc()['total'];
 
 // Query SQL para selecionar agendamentos com limite, paginação e filtro de datas
-$sqlAgendamentos = "SELECT ag.id as id, cli.nome_completo as cliente_id, ag.data_agendamento, ag.tipo_procedimento, ag.observacoes, ag.status FROM agendamentos ag INNER JOIN clientes cli ON cli.id = ag.cliente_id WHERE 1 $condicaoData and finalizar is null LIMIT $registrosPorPagina OFFSET $offset";
+$sqlAgendamentos = "SELECT ag.id as id, cli.nome_completo as cliente_id, DATE_FORMAT(ag.data_agendamento, '%d/%m/%Y %H:%i') as data_agendamento, ag.valor, ag.tipo_procedimento, ag.observacoes, ag.status FROM agendamentos ag INNER JOIN clientes cli ON cli.id = ag.cliente_id WHERE 1 $condicaoData and finalizar is null LIMIT $registrosPorPagina OFFSET $offset";
 
 // Executando a query
 $resultAgendamentos = $conn->query($sqlAgendamentos);
@@ -101,6 +133,7 @@ $conn->close();
             <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
             <li><a href="../../views/admin/clientes.php">Clientes</a></li>
             <li><a href="../../views/admin/historicoAgendamentos.php">Historico de Agendamentos</a></li>
+            <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>
 
@@ -119,14 +152,15 @@ $conn->close();
         // Exibindo os resultados em uma tabela
         if (!empty($resultadosAgendamentos)) {
             echo "<table>";
-            echo "<tr><th>Cliente</th><th>Data do Agendamento</th><th>Tipo de Procedimento</th><th>Observações</th><th>Status</th><th>Ações</th></tr>";
+            echo "<tr><th>Cliente</th><th>Data do Agendamento</th><th>Procedimento</th><th>Observações</th><th>Valor</th><th>Status</th><th>Ações</th></tr>";
 
             foreach ($resultadosAgendamentos as $agendamento) {
                 echo "<tr>";
-                echo "<td>" . $agendamento["cliente_id"] . "</td>"; // Você pode querer obter o nome do cliente em vez do ID
+                echo "<td>" . $agendamento["cliente_id"] . "</td>"; 
                 echo "<td>" . $agendamento["data_agendamento"] . "</td>";
                 echo "<td>" . $agendamento["tipo_procedimento"] . "</td>";
                 echo "<td>" . $agendamento["observacoes"] . "</td>";
+                echo "<td>" . $agendamento["valor"] . "</td>";
                 echo "<td>" . $agendamento["status"] . "</td>";
 
                 // Adiciona botões de ação

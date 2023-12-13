@@ -1,3 +1,16 @@
+<?php
+session_start();
+require '../../assets/php/conexao.php';
+require '../../assets/php/verificaAdmin.php';
+$conn = conectarAoBanco();
+
+// Verifique se o usuário é um administrador
+if (!isAdmin()) {
+    // Se não for um administrador, redirecione para outra página ou exiba uma mensagem de erro
+    header("Location: ../../views/autenticado/home.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +31,7 @@
             <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
             <li><a href="../../views/admin/clientes.php">Clientes</a></li>
             <li><a href="../../views/admin/historicoAgendamentos.php">Historico de Agendamentos</a></li>
+            <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>
 

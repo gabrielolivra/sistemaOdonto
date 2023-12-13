@@ -1,3 +1,16 @@
+<?php
+session_start();
+require '../../assets/php/conexao.php';
+require '../../assets/php/verificaAdmin.php';
+$conn = conectarAoBanco();
+
+// Verifique se o usuário é um administrador
+if (!isAdmin()) {
+    // Se não for um administrador, redirecione para outra página ou exiba uma mensagem de erro
+    header("Location: ../../views/autenticado/home.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +31,7 @@
             <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
             <li><a href="../../views/admin/clientes.php">Clientes</a></li>
             <li><a href="../../views/admin/historicoAgendamentos.php">Historico de Agendamentos</a></li>
+            <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>
 
@@ -26,7 +40,7 @@
  
 
     <form action="../../assets/php/valida_cadastro_agendamento.php" method="POST">
-        <label for="cliente">Cliente:</label>
+        <label for="cliente">Cliente</label>
         <select id="cliente" name="cliente" required disable>
             <?php
              require '../../assets/php/conexao.php';
@@ -51,15 +65,17 @@
             ?>
         </select>
 
-        <label for="data_agendamento">Data do Agendamento:</label>
+        <label for="data_agendamento">Data do Agendamento</label>
         <input type="datetime-local" id="data_agendamento" name="data_agendamento" required>
 
-        <label for="tipo_procedimento">Tipo de Procedimento:</label>
+        <label for="tipo_procedimento">Tipo de Procedimento</label>
         <input type="text" id="tipo_procedimento" name="tipo_procedimento" required>
 
-        <label for="observacoes">Observações:</label>
+        <label for="observacoes">Observações</label>
         <textarea id="observacoes" name="observacoes" rows="3"></textarea>
 
+        <label for="valor">Valor a receber</label>
+        <input type="int" id="valor" name="valor" required>
         <button type="submit">Agendar</button>
     </form>
         

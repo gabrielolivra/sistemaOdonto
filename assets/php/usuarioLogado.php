@@ -6,7 +6,7 @@ function verificarUsuarioLogado() {
     }
 
     if (!isset($_SESSION["user_id"])) {
-        header("Location: ../../views/public/login.php");
+        header("Location: ../../index.php");
         exit;
     }
 
@@ -36,7 +36,7 @@ function verificarUsuarioLogado() {
             return $user;
         } else {
             // Caso o usuário não seja encontrado, redirecione para a página de login
-            header("Location: ../../views/public/login.php");
+            header("Location: ../../index.php");
             exit;
         }
     } else {

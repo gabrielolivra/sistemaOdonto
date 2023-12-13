@@ -85,6 +85,7 @@ $conn->close();
             <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
             <li><a href="../../views/admin/clientes.php">Clientes</a></li>
             <li><a href="../../views/admin/historicoAgendamentos.php">Historico de Agendamentos</a></li>
+            <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>
 
@@ -98,13 +99,14 @@ $conn->close();
 // Exibindo os resultados em uma tabela
 if (!empty($resultados)) {
     echo "<table>";
-    echo "<tr><th>ID</th><th>Nome</th><th>CPF</th><th>Agendar</th></tr>";
+    echo "<tr><th>Nome</th><th>CPF</th><th>Cidade</th><th>Endereço</th><th>Agendar</th></tr>";
     
     foreach ($resultados as $cliente) {
         echo "<tr>";
-        echo "<td>" . $cliente["id"] . "</td>";
         echo "<td>" . $cliente["nome_completo"] . "</td>";
         echo "<td>" . $cliente["cpf"] . "</td>";
+        echo "<td>" . $cliente["endereco_cidade"] . "</td>";
+        echo "<td>" . $cliente["endereco_rua"] . "</td>";
         echo "<td><button class='agendar' data-id='" . $cliente["id"] . "'>Agendar</button></td>";
         echo "</tr>";
     }
@@ -118,8 +120,8 @@ if (!empty($resultados)) {
 ?>
 
 
-    </div>
-    </div>
+</div>
+</div>
 </body>
 </html>
 <script>

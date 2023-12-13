@@ -24,7 +24,7 @@ function dashboardHome(){
     $dataAtualFormatada = "$anoAtual-$mesAtual-$diaAtual";
     
     // Executa a consulta SQL
-    $resultAgendamentos = $conn->query("SELECT COUNT(*) AS totalAgendamentos FROM agendamentos WHERE DATE(data_agendamento) = '$dataAtualFormatada'");
+    $resultAgendamentos = $conn->query("SELECT COUNT(*) AS totalAgendamentos FROM agendamentos WHERE DATE(data_agendamento) = '$dataAtualFormatada' and finalizar is null");
     
     // Verifica se a consulta foi bem-sucedida
     if ($resultAgendamentos !== false) {
@@ -44,7 +44,7 @@ function dashboardHome(){
 
 <?php
 
-function agendar($cliente, $dataAgendamento, $tipoProcedimento, $observacoes) {
+function agendar($cliente, $dataAgendamento, $tipoProcedimento, $observacoes,$valor ) {
     // Conectar ao banco de dados (substitua com suas configurações)
     $conn = conectarAoBanco();
 
@@ -63,7 +63,7 @@ function agendar($cliente, $dataAgendamento, $tipoProcedimento, $observacoes) {
               </script>';
     } else {
         // Preparar a declaração SQL para a inserção do agendamento
-        $stmt = $conn->prepare("INSERT INTO agendamentos (cliente_id, data_agendamento, tipo_procedimento, observacoes) VALUES (?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO agendamentos (cliente_id, data_agendamento, tipo_procedimento, observacoes, valor) VALUES (?, ?, ?, ?, ?)");
 
         // Verificar se a preparação foi bem-sucedida
         if ($stmt === false) {
@@ -71,7 +71,7 @@ function agendar($cliente, $dataAgendamento, $tipoProcedimento, $observacoes) {
         }
 
         // Bind dos parâmetros
-        $stmt->bind_param("ssss", $cliente, $dataAgendamento, $tipoProcedimento, $observacoes);
+        $stmt->bind_param("sssss", $cliente, $dataAgendamento, $tipoProcedimento, $observacoes, $valor);
 
         // Executar a declaração
         $result = $stmt->execute();

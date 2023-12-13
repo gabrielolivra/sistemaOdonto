@@ -10,9 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dataAgendamento = $_POST["data_agendamento"];
     $tipoProcedimento = $_POST["tipo_procedimento"];
     $observacoes = $_POST["observacoes"];
+    $valor = $_POST["valor"];
 
     // Chamar a função para agendar
-    agendar($cliente, $dataAgendamento, $tipoProcedimento, $observacoes);
+    agendar($cliente, $dataAgendamento, $tipoProcedimento, $observacoes, $valor);
 
     // Redirecionar ou realizar qualquer outra ação após o agendamento
     header("Location: ../../views/admin/home.php");
