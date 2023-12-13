@@ -19,6 +19,8 @@ if (!isAdmin()) {
     <link rel="stylesheet" href="../../assets/css/cadastroClientes.css">
     <link rel="stylesheet" href="../../assets/css/sidebar.css">
     <script src="../../assets/js/functions.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -40,7 +42,7 @@ if (!isAdmin()) {
 
     <div class="content">
         <h2>Cadastro de clientes</h2>
-        <form action="../../assets/php/valida_cadastro_cliente.php" method="POST">
+        <form action="../../assets/php/valida_cadastro_cliente.php" method="POST" id="cadastroForm">
         <label for="nome">Nome Completo</label>
         <input type="text" id="nome" name="nome" required>
 
@@ -69,3 +71,24 @@ if (!isAdmin()) {
 
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+    // Aplica a máscara ao campo de CEP
+    $('#cep').inputmask('99999-999');
+    $('#cpf').inputmask('999.999.999-99');
+    $('#telefone').inputmask('(99) 99999-9999');
+});
+$('#nome').on('input', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+        $('#endereco').on('input', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+        $('#cidade').on('input', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+        $('#estado').on('input', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+</script>
