@@ -1,0 +1,78 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top:20px;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    height: 30px;
+    width:60px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+div.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+div.pagination a {
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    display: inline-block;
+}
+
+div.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+div.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.btn-confirmar{
+    background-color: green;
+}
+
+.btn-recusar{
+    background-color: red;
+}
