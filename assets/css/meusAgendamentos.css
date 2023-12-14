@@ -74,6 +74,7 @@ div.pagination a:hover:not(.active) {
 
 .btn-confirmar {
     background-color: green;
+    width: 70px;
 }
 
 .btn-recusar {
@@ -83,4 +84,11 @@ div.pagination a:hover:not(.active) {
 .btn-excluir {
     background: red !important;
     width: 150px;
+}
+
+.pagina-atual {
+    background-color: #007bff;
+    /* Cor de destaque para a aba atual */
+    color: #fff;
+    /* Cor do texto na aba atual */
 }

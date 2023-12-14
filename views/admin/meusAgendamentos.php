@@ -189,13 +189,30 @@ $conn->close();
 
             echo "</table>";
 
+         
             // Adiciona links de paginação
-            $totalPaginas = ceil($totalAgendamentos / $registrosPorPagina);
-            echo "<div class='pagination'>";
-            for ($i = 1; $i <= $totalPaginas; $i++) {
-                echo "<a href='?pagina=$i' class='paginacao'>$i</a> ";
-            }
-            echo "</div>";
+        // Adiciona links de paginação
+        $paginaAtual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+
+        // Calcula o número total de páginas
+        $totalPaginas = ceil($totalAgendamentos / $registrosPorPagina);
+        
+        // Adiciona links de páginação
+        echo "<div class='pagination'>";
+        
+        // Link para a página anterior (desabilitado se estiver na primeira página)
+        if ($paginaAtual > 1) {
+            echo "<a href='?pagina=".($paginaAtual - 1)."' class='paginacao'>Anterior</a> ";
+        }
+        
+        // Adiciona links para páginas individuai
+        
+        // Link para a próxima página (desabilitado se estiver na última página)
+        if ($paginaAtual < $totalPaginas) {
+            echo "<a href='?pagina=".($paginaAtual + 1)."' class='paginacao'>Próximo</a> ";
+        }
+        
+        echo "</div>";
         } else {
             echo "Nenhum agendamento encontrado.";
         }
