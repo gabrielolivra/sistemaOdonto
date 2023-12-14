@@ -29,41 +29,45 @@ if (!isAdmin()) {
 <body>
 
 <div class="container">
+<div class="test">
     <div class="sidebar">
-    <img src="../../assets/img/logo-sidebar.png" alt="">
+        <img src="../../assets/img/logo-sidebar.png" alt="">
         <ul>
         <li><a href="../../views/admin/home.php">Página Inicial</a></li>
             <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
             <li><a href="../../views/admin/clientes.php">Agendar</a></li>
+            <li><a href="../../views/admin/listAgendamentos.php">Agendamentos</a></li>            
             <li><a href="../../views/admin/galeria.php">Galeria de clientes</a></li>
             <li><a href="../../views/admin/historicoAgendamentos.php">Histórico de Agendamentos</a></li>
             <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>
+</div>
+
 
     <div class="content">
         <h2>Cadastro de clientes</h2>
         <form action="../../assets/php/valida_cadastro_cliente.php" method="POST" id="cadastroForm">
         <label for="nome">Nome Completo</label>
-        <input type="text" id="nome" name="nome" required>
+        <input type="text" id="nome" name="nome" required placeholder ="Digite o nome do cliente">
 
         <label for="telefone">CPF</label>
-        <input type="text" id="cpf" name="cpf" required>
+        <input type="text" id="cpf" name="cpf" required placeholder ="Digite o cpf do cliente">
 
         <label for="telefone">Telefone</label>
-        <input type="text" id="telefone" name="telefone" required>
+        <input type="text" id="telefone" name="telefone" required placeholder ="Digite o telefone do cliente">
 
         <label for="cep">CEP</label>
-        <input type="text" id="cep" name="cep" required onblur="buscarCEP()">
+        <input type="text" id="cep" name="cep" required onblur="buscarCEP()" placeholder ="Digite o CEP do cliente">
 
         <label for="cidade">Cidade</label>
-        <input type="text" id="cidade" name="cidade" required>
+        <input type="text" id="cidade" name="cidade" required placeholder ="Digite a cidade do cliente">
 
         <label for="estado">Estado</label>
-        <input type="text" id="estado" name="estado" required>
+        <input type="text" id="estado" name="estado" required placeholder ="Digite o estado do cliente">
  
         <label for="endereco">Endereço</label>
-        <input type="text" id="endereco" name="endereco" required>
+        <input type="text" id="endereco" name="endereco" required placeholder ="Digite o endereço do cliente"> 
         <a href="../../views/admin/home.php" ><button type="button" style="background:red">Voltar</button></a>
         <button type="submit">Cadastrar</button>
     </form>

@@ -24,6 +24,8 @@ if (!isAdmin()) {
 <body>
 
 <div class="container">
+    
+<div class="test">
     <div class="sidebar">
         <img src="../../assets/img/logo-sidebar.png" alt="">
         <ul>
@@ -36,6 +38,7 @@ if (!isAdmin()) {
             <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>
+</div>
 
     <div class="content">
     <h2>Dashboard</h2>

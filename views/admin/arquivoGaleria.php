@@ -68,17 +68,20 @@ if (isset($_GET['id'])) {
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">
-            <img src="../../assets/img/logo-sidebar.png" alt="">
-            <ul>
-                <li><a href="../../views/admin/home.php">Página Inicial</a></li>
-                <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
-                <li><a href="../../views/admin/clientes.php">Agendar</a></li>
-                <li><a href="../../views/admin/galeria.php">Galeria de clientes</a></li>
-                <li><a href="../../views/admin/historicoAgendamentos.php">Histórico de Agendamentos</a></li>
-                <li><a href="../../assets/php/logout.php">Sair</a></li>
-            </ul>
-        </div>
+    <div class="test">
+    <div class="sidebar">
+        <img src="../../assets/img/logo-sidebar.png" alt="">
+        <ul>
+        <li><a href="../../views/admin/home.php">Página Inicial</a></li>
+            <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
+            <li><a href="../../views/admin/clientes.php">Agendar</a></li>
+            <li><a href="../../views/admin/listAgendamentos.php">Agendamentos</a></li>            
+            <li><a href="../../views/admin/galeria.php">Galeria de clientes</a></li>
+            <li><a href="../../views/admin/historicoAgendamentos.php">Histórico de Agendamentos</a></li>
+            <li><a href="../../assets/php/logout.php">Sair</a></li>
+        </ul>
+    </div>
+</div>
 
         <div class="content">
             <h2>Galeria</h2>
@@ -86,12 +89,12 @@ if (isset($_GET['id'])) {
             <form action="../../assets/php/cadastroGaleria.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" method="post" enctype="multipart/form-data" class="add-img-form">
             <div class="container-dados">
                 <label for="descricao">Descrição</label>
-                <input type="text" name="descricao" required></div>
+                <input type="text" name="descricao" required placeholder ="Digite a descrição do item"></div>
                 <div class="container-dados">
     <label for="imagem" id="imagemLabel" class="custom-file-upload">
         Clique aqui para adicionar uma imagem
     </label>
-    <input type="file" name="imagem" id="imagem" class="input-file" onchange="atualizarLabel()" required>
+    <input type="file" name="imagem" id="imagem" class="input-file" onchange="atualizarLabel()" required >
 </div>
                 <input type="hidden" name="id_cliente" value="<?php echo htmlspecialchars($_GET['id']); ?>">
                 <input type="submit" value="Adicionar Imagem" class="add-img">
