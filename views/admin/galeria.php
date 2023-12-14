@@ -68,6 +68,7 @@ $conn->close();
     <link rel="stylesheet" href="../../assets/css/sidebar.css">
     <link rel="stylesheet" href="../../assets/css/clientes.css">
     <link rel="stylesheet" href="../../assets/css/homeAdmin.css">
+    <link rel="icon" href="../../assets/img/logo-sidebar.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title>Galeria dos clientes</title>

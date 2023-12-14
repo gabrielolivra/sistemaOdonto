@@ -16,7 +16,7 @@ function listarImagensUsuario($usuario_id) {
     $conn = conectarAoBanco();
 
     // Substitua 'galeria' pelo nome real da tabela no banco de dados
-    $sql = "SELECT id, usuario_id, descricao, imagem FROM galeria WHERE usuario_id = ?";
+    $sql = "SELECT id, usuario_id, descricao,DATE_FORMAT(data_imagem, '%d/%m/%Y') as data_imagem, imagem FROM galeria WHERE usuario_id = ? order by data_imagem desc";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $usuario_id);
     $stmt->execute();
@@ -63,6 +63,7 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/sidebar.css">
     <link rel="stylesheet" href="../../assets/css/arquivoGaleria.css">
+    <link rel="icon" href="../../assets/img/logo-sidebar.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title>Galeria</title>
 </head>
@@ -104,7 +105,8 @@ if (isset($_GET['id'])) {
     <div class="container-dados-enviados">
         
         <img src="<?php echo $imagem['imagem']; ?>" alt="Imagem do Usuário">
-        <p>Descrição: <?php echo $imagem['descricao']; ?></p>
+        <p><?php echo $imagem['descricao']; ?></p>
+        <p><?php echo $imagem['data_imagem']; ?></p>
         <div class="btns-container-dados-enviados">
         <button onclick="abrirModal('<?php echo $imagem['imagem']; ?>')">Abrir</button>
         <form id="excluirForm" action="../../assets/php/excluirImagem.php" method="post">

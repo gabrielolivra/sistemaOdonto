@@ -24,8 +24,8 @@ $user = verificarUsuarioLogado();
 function anexarGaleria($id_usuario, $descricao, $imagem)
 {
     $conn = conectarAoBanco();
-
-    $sql = "INSERT INTO galeria (usuario_id, descricao, imagem) VALUES (?, ?, ?)";
+    $dataAtual = date("Y-m-d");
+    $sql = "INSERT INTO galeria (usuario_id, descricao, imagem, data_imagem) VALUES (?, ?, ?, '$dataAtual')";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
@@ -44,7 +44,7 @@ function anexarGaleria($id_usuario, $descricao, $imagem)
                 // Substitua isso pela lógica real do seu servidor
                 Swal.fire({
                     icon: "success",
-                    title: "Imagem adicionada a galeria com sucesso!",
+                    title: "Imagem adicionada à galeria com sucesso!",
                     showConfirmButton: false,
                     timer: 2500
                 }).then(() => {
@@ -53,7 +53,9 @@ function anexarGaleria($id_usuario, $descricao, $imagem)
                 });
             
         </script>';
-    } else {
+    } 
+    // ...
+ else {
         echo '
             <script>
                 // Adicione um listener para o envio do formulário

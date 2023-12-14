@@ -69,8 +69,12 @@ section {
     align-items: center;
     background-color: #2fbbf35e;
     margin: 10px;
-    height: 200px;
+    height: 220px;
     border-radius: 5px;
+}
+
+.container-dados-enviados p {
+    margin: 5px;
 }
 
 .container-dados-enviados img {
