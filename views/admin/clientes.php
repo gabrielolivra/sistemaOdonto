@@ -70,7 +70,7 @@ $conn->close();
     <link rel="stylesheet" href="../../assets/css/homeAdmin.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Clientes</title>
+    <title>Agendar clientes</title>
 </head>
 <body>
 
@@ -88,7 +88,7 @@ $conn->close();
     </div>
 
     <div class="content">
-        <h2>Clientes</h2>
+        <h2>Agendar clientes</h2>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <input type="text" name="nome_cliente">
             <input type="submit" value="Buscar">

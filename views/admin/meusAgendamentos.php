@@ -25,39 +25,38 @@ $offset = ($paginaAtual - 1) * $registrosPorPagina;
 $resultadosAgendamentos = array();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $idAgendamento = $_POST["id_agendamento"];
     $acao = isset($_POST["acao"]) ? $_POST["acao"] : null;
-    // Atualizar o status do agendamento
-    if ($acao !== null) {
-        // Atualizar o status do agendamento
-        $sqlAtualizarStatus = "UPDATE agendamentos SET status = '$acao' WHERE id = $idAgendamento";
-        $conn->query($sqlAtualizarStatus);
-    }
-    else{
-    // Verificar se a chave 'finalizar' está definida no array $_POST
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $idAgendamento = $_POST["id_agendamento"];
-    
-        // Verificar se a chave 'acao' está definida no array $_POST
-        $acao = isset($_POST["acao"]) ? $_POST["acao"] : null;
-    
-        // Atualizar o status do agendamento, se 'acao' não for nulo
-        if ($acao !== null) {
+
+    // Verificar se o botão de exclusão foi pressionado
+    if (isset($_POST["excluir"])) {
+        $idExcluir = $_POST["excluir"];
+
+        // Adicione lógica de exclusão aqui (por exemplo, uma consulta SQL DELETE)
+        $sqlExcluirAgendamento = "DELETE FROM agendamentos WHERE id = $idExcluir";
+        $conn->query($sqlExcluirAgendamento);
+
+        // Adicione qualquer redirecionamento ou mensagem de sucesso aqui
+    } else {
+        $idAgendamento = isset($_POST["id_agendamento"]) ? $_POST["id_agendamento"] : null;
+
+        // Atualizar o status do agendamento se o botão de exclusão não foi pressionado
+        if ($idAgendamento !== null && $acao !== null) {
+            // Atualizar o status do agendamento
             $sqlAtualizarStatus = "UPDATE agendamentos SET status = '$acao' WHERE id = $idAgendamento";
             $conn->query($sqlAtualizarStatus);
         } else {
             // Verificar se a chave 'finalizar' está definida no array $_POST
             if (isset($_POST["finalizar"])) {
                 $acaoFinalizar = $_POST["finalizar"];
-    
+
                 // Verificar se o campo 'status' é nulo antes de atualizar 'finalizar'
                 $sqlVerificarStatusNulo = "SELECT status FROM agendamentos WHERE id = $idAgendamento";
                 $resultStatus = $conn->query($sqlVerificarStatusNulo);
-    
+
                 if ($resultStatus !== false && $resultStatus->num_rows > 0) {
                     $rowStatus = $resultStatus->fetch_assoc();
                     $statusAtual = $rowStatus["status"];
-    
+
                     // Atualizar o campo 'finalizar' somente se o campo 'status' não for nulo
                     if ($statusAtual !== null) {
                         $sqlAtualizarStatusFinalizar = "UPDATE agendamentos SET finalizar = '$acaoFinalizar' WHERE id = $idAgendamento";
@@ -67,8 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-    }
 }
+
+
 
 // Configurar as variáveis de filtro de datas
 $dataInicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : '';
@@ -121,7 +121,7 @@ $conn->close();
     <link rel="stylesheet" href="../../assets/css/sidebar.css">
     <link rel="stylesheet" href="../../assets/css/meusAgendamentos.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Agendamentos</title>
+    <title>Agendamentos do dia</title>
 </head>
 <body>
 
@@ -139,7 +139,7 @@ $conn->close();
     </div>
 
     <div class="content">
-        <h2>Agendamentos</h2>
+        <h2>Agendamentos do dia</h2>
         <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form-filtro">
         <label for="data_inicio">Data de Início:</label>
         <input type="date" id="data_inicio" name="data_inicio">
@@ -163,17 +163,22 @@ $conn->close();
                 echo "<td>" . $agendamento["observacoes"] . "</td>";
                 echo "<td>" . $agendamento["valor"] . "</td>";
                 echo "<td>" . $agendamento["status"] . "</td>";
-
+            
                 // Adiciona botões de ação
                 echo "<td>";
                 echo "<form method='post' action='".$_SERVER["PHP_SELF"]."' id='form-agendamento'>";
                 echo "<input type='hidden' name='id_agendamento' value='".$agendamento["id"]."'>";
                 echo "<button type='submit' name='acao' value='confirmado' class='btn-confirmar'>Confirmar</button>";
                 echo "<button type='submit' name='acao' value='recusado' class='btn-recusar'>Recusar</button>";
-                echo "<button type='submit' name='finalizar' value=1 class='btn-finalizar'>Finalizar</button>";
+                echo "<button type='submit' name='finalizar' value='1' class='btn-finalizar'>Finalizar</button>";
+            
+                // Adiciona botão de exclusão
+                echo "<button type='button' name='excluir' value='".$agendamento["id"]."' class='btn-excluir' style='background: red !important; width: 150px;' onclick='confirmarExclusao(".$agendamento["id"].")'>Excluir agendamento</button>";
+
+            
                 echo "</form>";
                 echo "</td>";
-
+            
                 echo "</tr>";
             }
 
@@ -196,3 +201,25 @@ $conn->close();
 
 </body>
 </html>
+<script>
+    function confirmarExclusao(idAgendamento) {
+        var confirmacao = confirm("Tem certeza de que deseja excluir?");
+        console.log(idAgendamento);
+        console.log(confirmacao);
+
+        if (confirmacao === true) {
+            // Criar um novo elemento input no formulário
+            var inputExcluir = document.createElement("input");
+            inputExcluir.type = "hidden";
+            inputExcluir.name = "excluir";
+            inputExcluir.value = idAgendamento;
+
+            // Adicionar o novo elemento input ao formulário
+            document.getElementById("form-agendamento").appendChild(inputExcluir);
+
+            // Enviar o formulário
+            document.getElementById("form-agendamento").submit();
+        }
+    }
+</script>
+

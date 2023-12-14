@@ -57,10 +57,10 @@ function agendar($cliente, $dataAgendamento, $tipoProcedimento, $observacoes,$va
     if (horarioJaAgendado($conn, $dataAgendamento)) {
         // Se o horário já estiver agendado, exibe um popup
         echo '<script>
-                $(function() {
-                    $( "#dialog" ).dialog();
-                });
+                alert("Já possui um cliente agendado para esse horario! Selecione outro!")
+                window.location.href = "../../views/admin/agendamentos.php?id='.$cliente.'";
               </script>';
+              
     } else {
         // Preparar a declaração SQL para a inserção do agendamento
         $stmt = $conn->prepare("INSERT INTO agendamentos (cliente_id, data_agendamento, tipo_procedimento, observacoes, valor) VALUES (?, ?, ?, ?, ?)");

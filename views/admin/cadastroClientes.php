@@ -64,7 +64,7 @@ if (!isAdmin()) {
  
         <label for="endereco">Endereço</label>
         <input type="text" id="endereco" name="endereco" required>
-
+        <a href="../../views/admin/home.php" ><button type="button" style="background:red">Voltar</button></a>
         <button type="submit">Cadastrar</button>
     </form>
     </div>

@@ -30,6 +30,7 @@ if (!isAdmin()) {
         <li><a href="../../views/admin/home.php">Página Inicial</a></li>
             <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
             <li><a href="../../views/admin/clientes.php">Agendar</a></li>
+            <li><a href="../../views/admin/listAgendamentos.php">Agendamentos</a></li>            
             <li><a href="../../views/admin/galeria.php">Galeria de clientes</a></li>
             <li><a href="../../views/admin/historicoAgendamentos.php">Histórico de Agendamentos</a></li>
             <li><a href="../../assets/php/logout.php">Sair</a></li>

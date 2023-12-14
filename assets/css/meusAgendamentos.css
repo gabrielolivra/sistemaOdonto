@@ -1,10 +1,11 @@
 table {
     border-collapse: collapse;
     width: 100%;
-    margin-top:20px;
+    margin-top: 20px;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
@@ -24,7 +25,9 @@ label {
     margin-bottom: 8px;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
     width: 100%;
     padding: 8px;
     margin-bottom: 16px;
@@ -37,7 +40,7 @@ button {
     color: #fff;
     border: none;
     height: 30px;
-    width:60px;
+    width: 60px;
     margin-left: 10px;
     border-radius: 4px;
     cursor: pointer;
@@ -69,10 +72,15 @@ div.pagination a:hover:not(.active) {
     background-color: #ddd;
 }
 
-.btn-confirmar{
+.btn-confirmar {
     background-color: green;
 }
 
-.btn-recusar{
+.btn-recusar {
     background-color: red;
+}
+
+.btn-excluir {
+    background: red !important;
+    width: 150px;
 }

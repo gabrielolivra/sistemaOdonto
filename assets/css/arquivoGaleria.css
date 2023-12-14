@@ -1,0 +1,139 @@
+h2 {
+    text-align: center;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.add-img-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 20px auto;
+}
+
+.add-img-form input[type="submit"] {
+    background: #2fbbf3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+
+.custom-file-upload {
+    cursor: pointer;
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #2fbbf3;
+    /* Cor de fundo desejada para o botão */
+    color: #fff;
+    /* Cor do texto no botão */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-file {
+    display: none;
+}
+
+
+.container-dados {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+
+}
+
+.container-dados label {
+    margin-bottom: 5px;
+}
+
+.container-dados input {
+    height: 30px;
+}
+
+.add-img {
+    height: 30px;
+
+}
+
+.container-dados-enviados {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #2fbbf35e;
+    margin: 10px;
+    height: 200px;
+    border-radius: 5px;
+}
+
+.container-dados-enviados img {
+    border-radius: 5px;
+    margin: 0 !important;
+}
+
+.container-dados-enviados button {
+    background-color: blue;
+    color: white;
+    border: none;
+    width: 80px;
+    border-radius: 5px;
+    height: 30px;
+    margin: 5px;
+}
+
+.container-dados-enviados form input[type="button"] {
+    background-color: red;
+    color: white;
+    border: none;
+    width: 80px;
+    border-radius: 5px;
+    height: 30px;
+    margin: 5px;
+}
+
+.btns-container-dados-enviados {
+    display: flex;
+
+}
+
+
+.modal {
+    display: none;
+    /* O modal é oculto por padrão */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+
+}
+
+
+.modal-content {
+    margin: 50px auto;
+    display: block;
+    width: 600px;
+    height: 600px;
+
+}
+
+
+.fechar {
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}

@@ -62,8 +62,9 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/sidebar.css">
+    <link rel="stylesheet" href="../../assets/css/arquivoGaleria.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Home</title>
+    <title>Galeria</title>
 </head>
 <body>
     <div class="container">
@@ -82,41 +83,42 @@ if (isset($_GET['id'])) {
         <div class="content">
             <h2>Galeria</h2>
 
-            <form action="../../assets/php/cadastroGaleria.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" method="post" enctype="multipart/form-data">
-                <label for="descricao">Descrição:</label>
-                <input type="text" name="descricao" required><br>
-                <label for="imagem">Imagem:</label>
-                <input type="file" name="imagem" required><br>
-                <input type="submit" value="Adicionar Imagem">
+            <form action="../../assets/php/cadastroGaleria.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" method="post" enctype="multipart/form-data" class="add-img-form">
+            <div class="container-dados">
+                <label for="descricao">Descrição</label>
+                <input type="text" name="descricao" required></div>
+                <div class="container-dados">
+    <label for="imagem" id="imagemLabel" class="custom-file-upload">
+        Clique aqui para adicionar uma imagem
+    </label>
+    <input type="file" name="imagem" id="imagem" class="input-file" onchange="atualizarLabel()" required>
+</div>
+                <input type="hidden" name="id_cliente" value="<?php echo htmlspecialchars($_GET['id']); ?>">
+                <input type="submit" value="Adicionar Imagem" class="add-img">
             </form>
-
-            <!-- Exibe as imagens do usuário -->
             <?php foreach ($imagensUsuario as $imagem) : ?>
-    <div>
-        <p>Descrição: <?php echo $imagem['descricao']; ?></p>
+    <section>
+    <div class="container-dados-enviados">
+        
         <img src="<?php echo $imagem['imagem']; ?>" alt="Imagem do Usuário">
-
-        <!-- Botão para abrir o modal -->
+        <p>Descrição: <?php echo $imagem['descricao']; ?></p>
+        <div class="btns-container-dados-enviados">
         <button onclick="abrirModal('<?php echo $imagem['imagem']; ?>')">Abrir</button>
-
-        <!-- Formulário para excluir a imagem -->
-        <form action="../../assets/php/excluirImagem.php" method="post">
-            <input type="hidden" name="id_imagem" value="<?php echo $imagem['id']; ?>">
-            <input type="hidden" name="id_cliente" value="<?php echo htmlspecialchars($_GET['id']); ?>">
-            <input type="submit" value="Excluir">
-        </form>
+        <form id="excluirForm" action="../../assets/php/excluirImagem.php" method="post">
+    <input type="hidden" name="id_imagem" value="<?php echo $imagem['id']; ?>">
+    <input type="hidden" name="id_cliente" value="<?php echo htmlspecialchars($_GET['id']); ?>">
+    <input type="button" value="Excluir" onclick="confirmarExclusao()">
+</form>
+        </div>
     </div>
 <?php endforeach; ?>
-
-<!-- Modal para exibir imagem em tamanho maior -->
+</section>
 <div id="imagemModal" class="modal">
     <span class="fechar" onclick="fecharModal()">&times;</span>
     <img class="modal-content" id="imagemModalContent">
 </div>
-
-
-        </div>
-    </div>
+</div>
+</div>
 </body>
 </html>
 <script>
@@ -132,41 +134,24 @@ if (isset($_GET['id'])) {
         var modal = document.getElementById('imagemModal');
         modal.style.display = 'none';
     }
+
+    function confirmarExclusao() {
+        var confirmacao = confirm("Tem certeza de que deseja excluir?");
+        if (confirmacao) {
+            document.getElementById("excluirForm").submit();
+        }
+    }
+    
+
+    function atualizarLabel() {
+        var input = document.getElementById('imagem');
+        var label = document.getElementById('imagemLabel');
+
+        if (input.files.length > 0) {
+            label.innerText = input.files[0].name;
+        } else {
+            label.innerText = 'Clique aqui para adicionar uma imagem';
+        }
+    }
+
 </script>
-
-<!-- ... (seu código existente) -->
-
-<style>
-    /* Estilo para o modal */
-    .modal {
-        display: none; /* O modal é oculto por padrão */
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.9); /* Cor de fundo escura */
-    }
-
-    /* Conteúdo do modal */
-    .modal-content {
-        margin: 50px auto;
-        display: block;
-        width:600px; /* Aumente este valor para aumentar a largura máxima */
-        height:600px; /* Aumente este valor para aumentar a altura máxima */
-    }
-
-    /* Botão de fechar do modal */
-    .fechar {
-        color: #fff;
-        font-size: 30px;
-        font-weight: bold;
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        cursor: pointer;
-    }
-</style>
-<!-- ... (seu código existente) -->

@@ -77,6 +77,7 @@ if (!isAdmin()) {
 
         <label for="valor">Valor a receber</label>
         <input type="int" id="valor" name="valor" required>
+        <a href="../../views/admin/clientes.php" ><button type="button" style="background:red">Voltar</button></a>
         <button type="submit">Agendar</button>
     </form>
         
@@ -85,10 +86,3 @@ if (!isAdmin()) {
 
 </body>
 </html>
-
-<style>
-   
-
-
-
-</style>

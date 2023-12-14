@@ -80,7 +80,7 @@ function anexarGaleria($id_usuario, $descricao, $imagem)
 
 // Processa o formulário
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_usuario = $_POST['usuario_id'];
+    $id_usuario = $_POST['id_cliente'];
     $descricao = $_POST['descricao'];
 
     // Verifica se foi enviado um arquivo
