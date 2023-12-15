@@ -96,7 +96,7 @@ $sqlSomaValores = "SELECT SUM(ag.valor) AS valor_total FROM agendamentos ag WHER
 $resultSomaValores = $conn->query($sqlSomaValores);
 $somaValores = $resultSomaValores->fetch_assoc()['valor_total'];
 // Query SQL para selecionar agendamentos com limite, paginação e filtro de datas
-$sqlAgendamentos = "SELECT ag.id as id, cli.nome_completo as cliente_id, cli.cpf as cpf, DATE_FORMAT(ag.data_agendamento, '%d/%m/%Y %H:%i') as data_agendamento, ag.valor, ag.tipo_procedimento, ag.observacoes, ag.status FROM agendamentos ag INNER JOIN clientes cli ON cli.id = ag.cliente_id WHERE finalizar is not null and 1 $condicaoData  LIMIT $registrosPorPagina OFFSET $offset";
+$sqlAgendamentos = "SELECT ag.id as id, cli.nome_completo as cliente_id, cli.cpf as cpf, DATE_FORMAT(ag.data_agendamento, '%d/%m/%Y %H:%i') as data_agendamento, ag.valor, ag.tipo_procedimento, ag.observacoes, ag.status FROM agendamentos ag INNER JOIN clientes cli ON cli.id = ag.cliente_id WHERE finalizar is not null and 1 $condicaoData order by data_agendamento desc  LIMIT $registrosPorPagina OFFSET $offset";
 
 // Executando a query
 $resultAgendamentos = $conn->query($sqlAgendamentos);
