@@ -39,6 +39,7 @@ if (!isAdmin()) {
             <li><a href="../../views/admin/galeria.php">Galeria de clientes</a></li>
             <li><a href="../../views/admin/historicoAgendamentos.php">Histórico de Agendamentos</a></li>
             <li><a href="../../views/admin/saldo.php">Prestação de contas</a></li>
+            <li><a href="../../views/admin/backup.php">Backup</a></li>
             <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>
@@ -60,7 +61,7 @@ if (!isAdmin()) {
         $conn = mysqli_connect('localhost', 'root', '', 'sistema');
 
         // Consultar a última data de backup
-        $query = "SELECT MAX(data_backup) AS ultima_data FROM backup_control";
+        $query = "SELECT COALESCE(MAX(data_backup), 'Ainda não foi feito o primeiro backup') AS ultima_data FROM backup_control";
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($result);
         $ultimaDataBackup = $row['ultima_data'];?>
