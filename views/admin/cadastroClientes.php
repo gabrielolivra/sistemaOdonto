@@ -54,22 +54,22 @@ if (!isAdmin()) {
         <input type="text" id="nome" name="nome" required placeholder ="Digite o nome do cliente">
 
         <label for="telefone">CPF</label>
-        <input type="text" id="cpf" name="cpf" required placeholder ="Digite o cpf do cliente">
+        <input type="text" id="cpf" name="cpf"  placeholder ="Digite o cpf do cliente">
 
         <label for="telefone">Telefone</label>
         <input type="text" id="telefone" name="telefone" required placeholder ="Digite o telefone do cliente">
 
         <label for="cep">CEP</label>
-        <input type="text" id="cep" name="cep" required onblur="buscarCEP()" placeholder ="Digite o CEP do cliente">
+        <input type="text" id="cep" name="cep"  onblur="buscarCEP()" placeholder ="Digite o CEP do cliente">
 
         <label for="cidade">Cidade</label>
-        <input type="text" id="cidade" name="cidade" required placeholder ="Digite a cidade do cliente">
+        <input type="text" id="cidade" name="cidade"  placeholder ="Digite a cidade do cliente">
 
         <label for="estado">Estado</label>
-        <input type="text" id="estado" name="estado" required placeholder ="Digite o estado do cliente">
+        <input type="text" id="estado" name="estado"  placeholder ="Digite o estado do cliente">
  
         <label for="endereco">Endereço</label>
-        <input type="text" id="endereco" name="endereco" required placeholder ="Digite o endereço do cliente"> 
+        <input type="text" id="endereco" name="endereco" placeholder ="Digite o endereço do cliente"> 
         <a href="../../views/admin/home.php" ><button type="button" style="background:red">Voltar</button></a>
         <button type="submit">Cadastrar</button>
     </form>

@@ -94,7 +94,7 @@ $conn->close();
 
 
     <div class="content">
-        <h2>Clientes</h2>
+        <h2>Meus clientes</h2>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <input type="text" name="nome_cliente" placeholder="Digite o nome do cliente">
             <input type="submit" value="Buscar">
