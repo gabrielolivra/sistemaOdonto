@@ -133,6 +133,7 @@ $conn->close();
         <ul>
         <li><a href="../../views/admin/home.php">Página Inicial</a></li>
             <li><a href="../../views/admin/cadastroClientes.php">Cadastro de clientes</a></li>
+            <li><a href="../../views/admin/listClientes.php">Meus clientes</a></li>
             <li><a href="../../views/admin/clientes.php">Agendar</a></li>
             <li><a href="../../views/admin/listAgendamentos.php">Agendamentos</a></li>            
             <li><a href="../../views/admin/galeria.php">Galeria de clientes</a></li>

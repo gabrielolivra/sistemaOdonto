@@ -71,7 +71,7 @@ $conn->close();
     <link rel="icon" href="../../assets/img/logo-sidebar.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Agendar clientes</title>
+    <title>Clientes</title>
 </head>
 <body>
 
@@ -94,7 +94,7 @@ $conn->close();
 
 
     <div class="content">
-        <h2>Agendar clientes</h2>
+        <h2>Clientes</h2>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <input type="text" name="nome_cliente" placeholder="Digite o nome do cliente">
             <input type="submit" value="Buscar">
@@ -103,7 +103,7 @@ $conn->close();
         // Exibindo os resultados em uma tabela
         if (!empty($resultadosClientes)) {
             echo "<table>";
-            echo "<tr><th>Cliente</th><th>CPF</th><th>Telefone</th><th>Cidade</th><th>Endereço</th><th>Agendar</th></tr>";
+            echo "<tr><th>Cliente</th><th>CPF</th><th>Telefone</th><th>Cidade</th><th>Endereço</th><th>Ações</th></tr>";
 
             foreach ($resultadosClientes as $cliente) {
                 echo "<tr>";
@@ -112,7 +112,8 @@ $conn->close();
                 echo "<td>" . $cliente["telefone"] . "</td>";
                 echo "<td>" . $cliente["endereco_cidade"] . "</td>";
                 echo "<td>" . $cliente["endereco_rua"] . "</td>";
-                echo "<td><button class='agendar' data-id='" . $cliente["id"] . "'>Agendar</button></td>";
+                echo "<td><button style='margin-right:10px;' class='edit agendar' data-id='" . $cliente["id"] . "'>Editar</button>";
+                echo "<button style='background:red !important;' class='delete agendar' data-id='" . $cliente["id"] . "'>Excluir</button></td>";
                 echo "</tr>";
             }
 
@@ -137,10 +138,29 @@ $conn->close();
 <script>
     $(document).ready(function () {
         // Adiciona um evento de clique nos botões "Agendar"
-        $(".agendar").on("click", function () {
+        $(".edit").on("click", function () {
             // Obtém o ID do cliente associado ao botão clicado
             var clienteId = $(this).data("id");
-            window.location.href = "agendamentos.php?id=" + clienteId;
+            window.location.href = "editClientes.php?id=" + clienteId;
+        });
+    });
+
+    $(document).ready(function () {
+        // Adiciona um evento de clique nos botões "Excluir"
+        $(".delete").on("click", function () {
+            // Obtém o ID do cliente associado ao botão clicado
+            var clienteId = $(this).data("id");
+
+            // Pergunta ao usuário se ele realmente deseja excluir o cliente
+            var confirmacao = confirm("Tem certeza de que deseja excluir este cliente? \n \nTodos os dados contido nesse CLIENTE incluindo AGENDAMENTOS e GALERIA será apagado!");
+
+            // Se o usuário confirmar, redireciona para a página de exclusão
+            if (confirmacao) {
+                window.location.href = "../../assets/php/deleteClientes.php?id=" + clienteId;
+            } else {
+                // Caso contrário, não faz nada
+                console.log("Exclusão cancelada pelo usuário.");
+            }
         });
     });
 </script>
