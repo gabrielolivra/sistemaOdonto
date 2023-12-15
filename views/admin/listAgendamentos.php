@@ -79,10 +79,7 @@ $dataAtual = date('Y-m-d');
 
 // Construir a parte da condição da consulta SQL para o filtro de datas
 $condicaoData = '';
-if (empty($dataInicio) && empty($dataFim)) {
-    // Se não houver data de início nem data de fim especificadas, listar agendamentos do dia corrente
-    $condicaoData = " AND DATE(ag.data_agendamento) = '$dataAtual'";
-} elseif (!empty($dataInicio) && !empty($dataFim)) {
+if (!empty($dataInicio) && !empty($dataFim)) {
     $condicaoData = " AND ag.data_agendamento BETWEEN '$dataInicio' AND '$dataFim'";
 } elseif (!empty($dataInicio)) {
     $condicaoData = " AND ag.data_agendamento >= '$dataInicio'";

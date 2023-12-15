@@ -92,6 +92,9 @@ $sqlTotalAgendamentos = "SELECT COUNT(*) AS total FROM agendamentos ag INNER JOI
 $resultTotalAgendamentos = $conn->query($sqlTotalAgendamentos);
 $totalAgendamentos = $resultTotalAgendamentos->fetch_assoc()['total'];
 
+$sqlSomaValores = "SELECT SUM(ag.valor) AS valor_total FROM agendamentos ag WHERE 1 $condicaoData AND ag.finalizar IS NOT NULL and status ='confirmado'";
+$resultSomaValores = $conn->query($sqlSomaValores);
+$somaValores = $resultSomaValores->fetch_assoc()['valor_total'];
 // Query SQL para selecionar agendamentos com limite, paginação e filtro de datas
 $sqlAgendamentos = "SELECT ag.id as id, cli.nome_completo as cliente_id, cli.cpf as cpf, DATE_FORMAT(ag.data_agendamento, '%d/%m/%Y %H:%i') as data_agendamento, ag.valor, ag.tipo_procedimento, ag.observacoes, ag.status FROM agendamentos ag INNER JOIN clientes cli ON cli.id = ag.cliente_id WHERE finalizar is not null and 1 $condicaoData  LIMIT $registrosPorPagina OFFSET $offset";
 
@@ -153,6 +156,7 @@ $conn->close();
         <?php
         // Exibindo os resultados em uma tabela
         if (!empty($resultadosAgendamentos)) {
+            echo "<p style='margin:10px 10px; font-weight:600;'>Valor recebido no periodo: ".$somaValores."</p>";
             echo "<table>";
             echo "<tr><th>Cliente</th><th>CPF</th><th>Data do Agendamento</th><th>Procedimento</th><th>Observações</th><th>Valor recebido</th><th>Status</th></tr>";
 
