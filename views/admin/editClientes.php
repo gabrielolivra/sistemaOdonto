@@ -102,22 +102,22 @@ if (isset($_GET['id'])) {
     <input type="text" id="nome" name="nome" required placeholder="Digite o nome do cliente" value="<?php echo $nome_completo; ?>">
 
     <label for="cpf">CPF</label>
-    <input type="text" id="cpf" name="cpf" required placeholder="Digite o cpf do cliente" value="<?php echo $cpf; ?>">
+    <input type="text" id="cpf" name="cpf"  placeholder="Digite o cpf do cliente" value="<?php echo $cpf; ?>">
 
     <label for="telefone">Telefone</label>
     <input type="text" id="telefone" name="telefone" required placeholder="Digite o telefone do cliente" value="<?php echo $telefone; ?>">
 
     <label for="cep">CEP</label>
-    <input type="text" id="cep" name="cep" required onblur="buscarCEP()" placeholder="Digite o CEP do cliente" value="<?php echo $cep; ?>">
+    <input type="text" id="cep" name="cep"  onblur="buscarCEP()" placeholder="Digite o CEP do cliente" value="<?php echo $cep; ?>">
 
     <label for="cidade">Cidade</label>
-    <input type="text" id="cidade" name="cidade" required placeholder="Digite a cidade do cliente" value="<?php echo $cidade; ?>">
+    <input type="text" id="cidade" name="cidade"  placeholder="Digite a cidade do cliente" value="<?php echo $cidade; ?>">
 
     <label for="estado">Estado</label>
-    <input type="text" id="estado" name="estado" required placeholder="Digite o estado do cliente" value="<?php echo $estado; ?>">
+    <input type="text" id="estado" name="estado"  placeholder="Digite o estado do cliente" value="<?php echo $estado; ?>">
 
     <label for="endereco">Endereço</label>
-    <input type="text" id="endereco" name="endereco" required placeholder="Digite o endereço do cliente" value="<?php echo $endereco; ?>">
+    <input type="text" id="endereco" name="endereco" placeholder="Digite o endereço do cliente" value="<?php echo $endereco; ?>">
 
     <input type="hidden" name="id_cliente" value="<?php echo $cliente_id?>">
 
