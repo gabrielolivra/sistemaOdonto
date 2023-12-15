@@ -37,6 +37,7 @@ if (!isAdmin()) {
             <li><a href="../../views/admin/listAgendamentos.php">Agendamentos</a></li>            
             <li><a href="../../views/admin/galeria.php">Galeria de clientes</a></li>
             <li><a href="../../views/admin/historicoAgendamentos.php">Histórico de Agendamentos</a></li>
+            <li><a href="../../views/admin/saldo.php">Prestação de contas</a></li>
             <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>
@@ -53,13 +54,9 @@ dashboardHome();
 ?>
 <div class="container-dados">
 <a href="../../views/admin/clientes.php"><div class="dados_dashboard"><h3>Clientes Cadastrados</h3><p> <?php echo $totalClientes; ?></p></div></a>
-<a href="../../views/admin/meusAgendamentos.php"><div class="dados_dashboard"><h3>Agendamentos do dia</h3><p> <?php echo $totalAgendamentos; ?></p></div></div></a>
-        
-
-        
-    </div>
+<a href="../../views/admin/meusAgendamentos.php"><div class="dados_dashboard"><h3>Agendamentos do dia</h3><p> <?php echo $totalAgendamentos; ?></p></div></div></a>      
 </div>
-
+</div>
 </body>
 </html>
 

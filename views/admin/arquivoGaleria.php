@@ -80,6 +80,7 @@ if (isset($_GET['id'])) {
             <li><a href="../../views/admin/listAgendamentos.php">Agendamentos</a></li>            
             <li><a href="../../views/admin/galeria.php">Galeria de clientes</a></li>
             <li><a href="../../views/admin/historicoAgendamentos.php">Histórico de Agendamentos</a></li>
+            <li><a href="../../views/admin/saldo.php">Prestação de contas</a></li>
             <li><a href="../../assets/php/logout.php">Sair</a></li>
         </ul>
     </div>

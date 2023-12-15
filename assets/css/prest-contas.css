@@ -1,0 +1,76 @@
+h1,
+h2 {
+    color: #00bcd4;
+}
+
+canvas {
+    background-color: white;
+    border-radius: 10px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.datas {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 200px;
+
+}
+
+label {
+    color: #00bcd4;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="date"] {
+    padding: 5px;
+    border: 1px solid #00bcd4;
+    border-radius: 5px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #00bcd4;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #008ba3;
+}
+
+.container-dados {
+    display: flex;
+}
+
+.container-sum-dados {
+
+    width: 180px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.container-sum-dados p {
+    color: white;
+    text-align: center;
+}
+
+.dados-confirmados {
+    background: #36a2eb;
+}
+
+.dados-recusados {
+    background: #d4ad4a;
+}
