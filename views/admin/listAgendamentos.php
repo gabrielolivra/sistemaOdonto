@@ -144,10 +144,10 @@ $conn->close();
         <h2>Lista de agendamentos</h2>
         <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form-filtro">
         <label for="data_inicio">Data de Início:</label>
-        <input type="date" id="data_inicio" name="data_inicio">
+        <input type="datetime-local" id="data_inicio" name="data_inicio">
 
         <label for="data_fim">Data de Fim:</label>
-        <input type="date" id="data_fim" name="data_fim">
+        <input type="datetime-local" id="data_fim" name="data_fim">
 
         <button type="submit">Filtrar</button>
     </form>

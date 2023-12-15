@@ -122,7 +122,7 @@ $conn->close();
     <link rel="icon" href="../../assets/img/logo-sidebar.png" type="image/x-icon">
     <link rel="stylesheet" href="../../assets/css/meusAgendamentos.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Agendamentos</title>
+    <title>Historico de agendamentos</title>
 </head>
 <body>
 
@@ -147,10 +147,10 @@ $conn->close();
         <h2>Historico de agendamentos</h2>
         <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form-filtro">
         <label for="data_inicio">Data de Início:</label>
-        <input type="date" id="data_inicio" name="data_inicio">
+        <input type="datetime-local" id="data_inicio" name="data_inicio">
 
         <label for="data_fim">Data de Fim:</label>
-        <input type="date" id="data_fim" name="data_fim">
+        <input type="datetime-local" id="data_fim" name="data_fim">
 
         <button type="submit">Filtrar</button>
     </form>
